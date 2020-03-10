@@ -1,0 +1,323 @@
+    1  apt install byobu mgltools-pmv autodock-vina
+    2  apt install byobu mgltools-pmv autodock-vina htop net-tools
+    3  nano /etc/apt/sources.list
+    4  apt install byobu mgltools-pmv autodock-vina htop net-tools
+    5  cd /
+    6  mkdir work1
+    7  mkdir work2
+    8  mkdir work3
+    9  mkdir work4
+   10  mkdir work5
+   11  mkdir work6
+   12  mkdir work_opt
+   13  l
+   14  sudo mount /dev/sda1 work1/
+   15  cd work1/
+   16  ls
+   17  cd lost+found/
+   18  ls
+   19  cd ..
+   20  ls
+   21  df -lh 
+   22  chown -R goncalo /work1/
+   23  chown -R goncalo /work*
+   24  history
+   25  byobu
+   26  ifconfig
+   27  cd /media/goncalo/Freecom2.5TB/
+   28  rm -rf \$RECYCLE.BIN/
+   29  rm -rf System\ Volume\ Information/
+   30  cd backup_D+Freecom/
+   31  ls
+   32  cd MTC_work_opt/
+   33  du -lh
+   34  df -lh
+   35  df -lh .
+   36  df -lh ../MTC_work_opt/
+   37  nano /etc/fstab 
+   38  ls -al /dev/disk/by-uuid/
+   39  more /etc/fstab 
+   40  nano /etc/fstab
+   41  tail /etc/fstab 
+   42  ls /dev~
+   43  ls /dev
+   44  ls -al /dev/disk/by-uuid/
+   45  clear
+   46  ls -al /dev/disk/by-uuid/
+   47  ls /dev/
+   48  ifconfig 
+   49  apt install gromacs
+   50  gmx
+   51  gmx pdb2gm -f 4puo_clean.pdb 
+   52  gmx pdb2gmx -f 4puo_clean.pdb 
+   53  gmx editconf -f conf.gro -o newbox.gro -bt cubic -d 1.4
+   54  gmx solvate -cp newbox.gro -cs spc216.gro -p topology.top -o solv.gro
+   55  gmx solvate -cp newbox.gro -cs spc216.gro -p topol.top -o solv.gro
+   56  gmx grompp -f ions.mdp -c solv.gro -p topol.top -o ions.tpr
+   57  gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname NA -nname CL -neutral -conc 0.154
+   58  gmx grompp -f em.mdp -c solv_ions.gro -p topol.top -o em.tpr
+   59  gmx -v -nt 32 -nb gpu -deffnm em
+   60  gmx mdrun -v -nt 32 -nb gpu -deffnm em
+   61  gmx mdrun -v -nt 32 -deffnm em
+   62  cd /
+   63  ls /dev/
+   64  ls -al /dev/disk/by-uuid/
+   65  nano /etc/fstab 
+   66  mount /dev/sdf1 /work2/
+   67  mount /dev/sdf2 /work2/
+   68  mount /dev/sdj1 /work2/
+   69  mount /dev/sdi2 /work2/
+   70  mount /dev/sdh1 /work3/
+   71  mount /dev/sdf1 /work4/
+   72  mount /dev/sdf2 /work4/
+   73  umount /work4
+   74  umount /dev/sdf2 
+   75  cd /work_opt/
+   76  ls
+   77  cd ..
+   78  mv work_opt workopt
+   79  ls
+   80  du -lh
+   81  cd workopt/
+   82  du -lh
+   83  cd /
+   84  ls /dev/
+   85  ls -al /dev/disk/by-uuid/
+   86  nano /etc/fstab 
+   87  mount /dev/sdf1 /work2/
+   88  mount /dev/sdf2 /work2/
+   89  mount /dev/sdj1 /work2/
+   90  mount /dev/sdi2 /work2/
+   91  mount /dev/sdh1 /work3/
+   92  mount /dev/sdf1 /work4/
+   93  mount /dev/sdf2 /work4/
+   94  umount /work4
+   95  umount /dev/sdf2 
+   96  cd /work_opt/
+   97  ls
+   98  cd ..
+   99  mv work_opt workopt
+  100  ls
+  101  du -lh
+  102  cd workopt/
+  103  du -lh
+  104  apt update
+  105  apt upg
+  106  apt upgrade
+  107  sudo reboot
+  108  apt update
+  109  apt upgrade
+  110  apt update
+  111  apt upgrade
+  112  apt update
+  113  apt upgrade
+  114  ls /dev/
+  115  more /etc/fstab
+  116  df -lh
+  117  byobu
+  118  apt install gcc6
+  119  more /etc/profile
+  120  more /etc/bash_completion
+  121  more /etc/bash.bashrc 
+  122  nano /etc/bash.bashrc
+  123  source /etc/bash.bashrc
+  124  apt install gcc-6
+  125  apt install g++-6
+  126  ls /workopt/
+  127  apt install hwloc
+  128  apt install liblapack* libblas*
+  129  apt install libfftw3-*
+  130  history > /home/goncalo/root_history
+  131  nano /etc/bash.bashrc
+  132  source /etc/bash.bashrc
+  133  nano /etc/bash.bashrc
+  134  source /etc/bash.bashrc
+  135  history > /home/goncalo/root_history
+    1  apt install byobu mgltools-pmv autodock-vina
+    2  apt install byobu mgltools-pmv autodock-vina htop net-tools
+    3  nano /etc/apt/sources.list
+    4  apt install byobu mgltools-pmv autodock-vina htop net-tools
+    5  cd /
+    6  mkdir work1
+    7  mkdir work2
+    8  mkdir work3
+    9  mkdir work4
+   10  mkdir work5
+   11  mkdir work6
+   12  mkdir work_opt
+   13  l
+   14  sudo mount /dev/sda1 work1/
+   15  cd work1/
+   16  ls
+   17  cd lost+found/
+   18  ls
+   19  cd ..
+   20  ls
+   21  df -lh 
+   22  chown -R goncalo /work1/
+   23  chown -R goncalo /work*
+   24  history
+   25  byobu
+   26  ifconfig
+   27  cd /media/goncalo/Freecom2.5TB/
+   28  rm -rf \$RECYCLE.BIN/
+   29  rm -rf System\ Volume\ Information/
+   30  cd backup_D+Freecom/
+   31  ls
+   32  cd MTC_work_opt/
+   33  du -lh
+   34  df -lh
+   35  df -lh .
+   36  df -lh ../MTC_work_opt/
+   37  nano /etc/fstab 
+   38  ls -al /dev/disk/by-uuid/
+   39  more /etc/fstab 
+   40  nano /etc/fstab
+   41  tail /etc/fstab 
+   42  ls /dev~
+   43  ls /dev
+   44  ls -al /dev/disk/by-uuid/
+   45  clear
+   46  ls -al /dev/disk/by-uuid/
+   47  ls /dev/
+   48  ifconfig 
+   49  apt install gromacs
+   50  gmx
+   51  gmx pdb2gm -f 4puo_clean.pdb 
+   52  gmx pdb2gmx -f 4puo_clean.pdb 
+   53  gmx editconf -f conf.gro -o newbox.gro -bt cubic -d 1.4
+   54  gmx solvate -cp newbox.gro -cs spc216.gro -p topology.top -o solv.gro
+   55  gmx solvate -cp newbox.gro -cs spc216.gro -p topol.top -o solv.gro
+   56  gmx grompp -f ions.mdp -c solv.gro -p topol.top -o ions.tpr
+   57  gmx genion -s ions.tpr -o solv_ions.gro -p topol.top -pname NA -nname CL -neutral -conc 0.154
+   58  gmx grompp -f em.mdp -c solv_ions.gro -p topol.top -o em.tpr
+   59  gmx -v -nt 32 -nb gpu -deffnm em
+   60  gmx mdrun -v -nt 32 -nb gpu -deffnm em
+   61  gmx mdrun -v -nt 32 -deffnm em
+   62  cd /
+   63  ls /dev/
+   64  ls -al /dev/disk/by-uuid/
+   65  nano /etc/fstab 
+   66  mount /dev/sdf1 /work2/
+   67  mount /dev/sdf2 /work2/
+   68  mount /dev/sdj1 /work2/
+   69  mount /dev/sdi2 /work2/
+   70  mount /dev/sdh1 /work3/
+   71  mount /dev/sdf1 /work4/
+   72  mount /dev/sdf2 /work4/
+   73  umount /work4
+   74  umount /dev/sdf2 
+   75  cd /work_opt/
+   76  ls
+   77  cd ..
+   78  mv work_opt workopt
+   79  ls
+   80  du -lh
+   81  cd workopt/
+   82  du -lh
+   83  cd /
+   84  ls /dev/
+   85  ls -al /dev/disk/by-uuid/
+   86  nano /etc/fstab 
+   87  mount /dev/sdf1 /work2/
+   88  mount /dev/sdf2 /work2/
+   89  mount /dev/sdj1 /work2/
+   90  mount /dev/sdi2 /work2/
+   91  mount /dev/sdh1 /work3/
+   92  mount /dev/sdf1 /work4/
+   93  mount /dev/sdf2 /work4/
+   94  umount /work4
+   95  umount /dev/sdf2 
+   96  cd /work_opt/
+   97  ls
+   98  cd ..
+   99  mv work_opt workopt
+  100  ls
+  101  du -lh
+  102  cd workopt/
+  103  du -lh
+  104  apt update
+  105  apt upg
+  106  apt upgrade
+  107  sudo reboot
+  108  apt update
+  109  apt upgrade
+  110  apt update
+  111  apt upgrade
+  112  apt update
+  113  apt upgrade
+  114  ls /dev/
+  115  more /etc/fstab
+  116  df -lh
+  117  byobu
+  118  apt install gcc6
+  119  more /etc/profile
+  120  more /etc/bash_completion
+  121  more /etc/bash.bashrc 
+  122  nano /etc/bash.bashrc
+  123  source /etc/bash.bashrc
+  124  apt install gcc-6
+  125  apt install g++-6
+  126  ls /workopt/
+  127  apt install hwloc
+  128  apt install liblapack* libblas*
+  129  apt install libfftw3-*
+  130  history > /home/goncalo/root_history
+  131  nano /etc/bash.bashrc
+  132  source /etc/bash.bashrc
+  133  nano /etc/bash.bashrc
+  134  source /etc/bash.bashrc
+  135  history > /home/goncalo/root_history
+  136  apt install samba
+  137  sudo smbpasswd -a goncalo
+  138  nano /etc/samba/smb.conf 
+  139  service smbd restart 
+  140  ifconfig 
+  141  nano /etc/samba/smb.conf 
+  142  service smbd restart 
+  143  tail /etc/samba/smb.conf 
+  144  tail /etc/samba/smb.conf -n 25
+  145  history >> /home/goncalo/root_history
+  146  ls /dev/
+  147  mount /dev/sdb1 /work2/
+  148  ls work2
+  149  lw work2
+  150  ls /work2/
+  151  umount /work2 
+  152  mount /dev/sdc1 /work2/
+  153  mount /dev/sdc2 /work2/
+  154  ls /work2/
+  155  umount /work2 
+  156  ls /dev/
+  157  mount /dev/sdh1 /work2/
+  158  ls /work2/
+  159  ls
+  160  cd /dev/
+  161  history
+  162  mount /dev/sdi1 /work3/
+  163  ls /work3/
+  164  mount /dev/sdj1 /work4/
+  165  ls /work4/
+  166  ls sd*
+  167  history
+  168  mount /dev/sdk1 /work5/
+  169  mount /dev/sdk2 /work5/
+  170  ls /work5/
+  171  lsblk
+  172  umount /work2 /work3 /work4 /work5
+  173  lsblk
+  174  lsblk -a
+  175  man lsblk
+  176  blkid
+  177  mkdir /external_freecom
+  178  mount /dev/sdc1 /external_freecom/
+  179  mount /dev/sdc2 /external_freecom/
+  180  ls /external_freecom/
+  181  blkid
+  182  man blkid 
+  183  blkid -o full
+  184  umount /work*
+  185  blkid 
+  186  more /etc/fstab
+  187  blkid 
+  188  history >> /home/goncalo/Documents/root_history 

@@ -1,0 +1,27 @@
+zgj_fcy5
+
+ZGJ_GROMOS9654a7_ATB_FCY force field - SfrnsylCys (PFP PRL3)
+
+Based on gromos54a7 from gromacs 2016.01(Eur. Biophys. J. (2011), 40,, 843-856, DOI: 10.1007/s00249-011-0700-9)
+With the 42OL parameters from ATB for FCY:
+FCY1 = all atom model
+FCY2 = united atom model
+
+And the corresponding ATB force field parameters
+(https://atb.uq.edu.au/molecule.py?molid=35423)
+
+Developed for membrane-insertion of farnseyl PRL-3 proteins Vis-à-vis PFP
+ATB parameters were selectively modified to match the original ff parameters (check 42OL_implementation.xls for details)
+
+References for the ATB Automated Topology Builder
+
+Malde AK, Zuo L, Breeze M, Stroet M, Poger D, Nair PC, Oostenbrink C, Mark AE. An Automated force field Topology Builder (ATB) and repository: version 1.0. Journal of Chemical Theory and Computation, 2011, 7(12), 4026-4037. DOI: 10.1021/ct200196m 
+
+Canzar S, El-Kebir M, Pool R, Elbassioni K, Malde AK, Mark AE, Geerke DP, Stougie L, Klau GW. Charge Group Partitioning in Biomolecular Simulation. Journal of Computational Biology, 2013, 20, 188-198. DOI:10.1089/cmb.2012.0239 
+
+Koziara KB, Stroet M, Malde AK, Mark AE. Testing and validation of the Automated Topology Builder (ATB) version 2.0: prediction of hydration free enthalpies. Journal of Computer-Aided Molecular Design, 2014. DOI: 10.1007/s10822-014-9713-7
+
+
+
++ CO3 ATB ATB molid: 1167
++ V3_gupta

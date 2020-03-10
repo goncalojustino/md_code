@@ -1,0 +1,25 @@
+HEADER    UNCLASSIFIED                            11-Jun-17
+TITLE     UNITED ATOM STRUCTURE FOR MOLECULE UNK                                
+AUTHOR    GROMOS AUTOMATIC TOPOLOGY BUILDER REVISION 2017-05-09 11:22:47
+AUTHOR   2  http://compbio.biosci.uq.edu.au/atb
+HETATM    1  H10 BZEQ    0       4.321  -0.192  -0.007  1.00  0.00           H
+HETATM    2   O3 BZEQ    0       3.589   0.440  -0.003  1.00  0.00           O
+HETATM    3   C1 BZEQ    0       2.346  -0.067   0.002  1.00  0.00           C
+HETATM    4   O2 BZEQ    0       2.183  -1.265   0.001  1.00  0.00           O
+HETATM    5   C4 BZEQ    0       1.155   0.856   0.002  1.00  0.00           C
+HETATM    6   O5 BZEQ    0      -0.047   0.083   0.001  1.00  0.00           O
+HETATM    7   C6 BZEQ    0      -1.242   0.867   0.001  1.00  0.00           C
+HETATM    8   C7 BZEQ    0      -2.441  -0.046   0.000  1.00  0.00           C
+HETATM    9   O8 BZEQ    0      -2.287  -1.255  -0.001  1.00  0.00           O
+HETATM   10   O9 BZEQ    0      -3.565   0.425  -0.001  1.00  0.00           O
+CONECT    1    2
+CONECT    2    1    3
+CONECT    3    2    4    5
+CONECT    4    3
+CONECT    5    3    6
+CONECT    6    5    7
+CONECT    7    6    8
+CONECT    8    7    9   10
+CONECT    9    8
+CONECT   10    8
+END

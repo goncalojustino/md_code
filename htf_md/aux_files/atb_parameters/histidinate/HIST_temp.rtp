@@ -1,0 +1,84 @@
+[ HIST ]
+ [ atoms ]
+    N     N    -0.31000     0
+    H     H     0.31000     0
+   CA   CH1     0.00000     1
+   CB   CH2     0.00000     1
+   CG     C     0.00000     2
+  ND1    NR    -0.70700     2
+  CD2     C    -0.01900     2
+  HD2    HC     0.05900     2
+  CE1     C     0.41600     2
+  HE1    HC    -0.04200     2
+  NE2    NR    -0.70700     2
+    C     C       0.450     3
+    O     O      -0.450     3
+ [ bonds ]
+    N     H    gb_2    
+    N    CA    gb_21   
+   CA    CB    gb_27   
+   CA     C    gb_27   
+   CB    CG    gb_27   
+   CG   ND1    gb_10   
+   CG   CD2    gb_10   
+  ND1   CE1    gb_10   
+  CD2   HD2    gb_3    
+  CD2   NE2    gb_10   
+  CE1   HE1    gb_3    
+  CE1   NE2    gb_10   
+    C     O    gb_5    
+    C    +N    gb_10   
+ [ exclusions ]
+;  ai    aj
+   CB   HD2
+   CB   CE1
+   CB   NE2
+   CG   HE1
+  ND1   HD2
+  CD2   HE1
+  HD2   CE1
+ [ angles ]
+;  ai    aj    ak   gromos type
+   -C     N     H     ga_32   
+   -C     N    CA     ga_31   
+    H     N    CA     ga_18   
+    N    CA    CB     ga_13   
+    N    CA     C     ga_13   
+   CB    CA     C     ga_13   
+   CA    CB    CG     ga_15   
+   CB    CG   ND1     ga_37   
+   CB    CG   CD2     ga_37   
+  ND1    CG   CD2     ga_7    
+   CG   ND1   CE1     ga_7    
+   CG   CD2   HD2     ga_36   
+   CG   CD2   NE2     ga_7    
+  HD2   CD2   NE2     ga_36   
+  ND1   CE1   HE1     ga_36   
+  ND1   CE1   NE2     ga_7    
+  HE1   CE1   NE2     ga_36   
+  CD2   NE2   CE1     ga_7    
+   CA     C     O     ga_30   
+   CA     C    +N     ga_19   
+    O     C    +N     ga_33   
+ [ impropers ]
+;  ai    aj    ak    al   gromos type
+    N    -C    CA     H     gi_1    
+   CA     N     C    CB     gi_2    
+   CG   ND1   CD2    CB     gi_1    
+   CG   ND1   CE1   NE2     gi_1    
+   CG   CD2   NE2   CE1     gi_1    
+  ND1    CG   CD2   NE2     gi_1    
+  ND1   CE1   NE2   CD2     gi_1    
+  CD2    CG   ND1   CE1     gi_1    
+  CD2    CG   NE2   HD2     gi_1    
+  CE1   ND1   NE2   HE1     gi_1    
+    C    CA    +N     O     gi_1    
+ [ dihedrals ]
+;  ai    aj    ak    al   gromos type
+  -CA    -C     N    CA     gd_14   
+   -C     N    CA     C     gd_44   
+   -C     N    CA     C     gd_43
+    N    CA    CB    CG     gd_34   
+    N    CA     C    +N     gd_45   
+    N    CA     C    +N     gd_42   
+   CA    CB    CG   ND1     gd_40   

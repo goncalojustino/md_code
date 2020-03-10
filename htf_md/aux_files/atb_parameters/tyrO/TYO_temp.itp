@@ -1,0 +1,117 @@
+[ TYO ]
+ [ atoms ]
+    N     N    -0.31000     0
+    H     H     0.31000     0
+   CA   CH1     0.00000     1
+   CB   CH2     0.00000     1
+   CG     C     0.00000     1
+  CD1     C    -0.12520     2
+  HD1    HC     0.11560     2
+  CD2     C    -0.12520     3
+  HD2    HC     0.11560     3
+  CE1     C    -0.47720     4
+  HE1    HC     0.12960     4
+  CE2     C    -0.47720     5
+  HE2    HC     0.12960     5
+   CZ     C     0.58960     6
+   OH    OA    -0.87520     6
+    C     C       0.450     7
+    O     O      -0.450     7
+ [ bonds ]
+    N     H    gb_2    
+    N    CA    gb_21   
+   CA    CB    gb_27   
+   CA     C    gb_27   
+   CB    CG    gb_27   
+   CG   CD1    gb_16   
+   CG   CD2    gb_16   
+  CD1   HD1    gb_3    
+  CD1   CE1    gb_16   
+  CD2   HD2    gb_3    
+  CD2   CE2    gb_16   
+  CE1   HE1    gb_3    
+  CE1    CZ    gb_16   
+  CE2   HE2    gb_3    
+  CE2    CZ    gb_16   
+   CZ    OH    gb_13   
+    C     O    gb_5    
+    C    +N    gb_10   
+ [ exclusions ]
+;  ai    aj
+   CB   HD1
+   CB   HD2
+   CB   CE1
+   CB   CE2
+   CG   HE1
+   CG   HE2
+   CG    CZ
+  CD1   HD2
+  CD1   CE2
+  CD1    OH
+  HD1   CD2
+  HD1   HE1
+  HD1    CZ
+  CD2   CE1
+  CD2    OH
+  HD2   HE2
+  HD2    CZ
+  CE1   HE2
+  HE1   CE2
+  HE1    OH
+  HE2    OH
+ [ angles ]
+;  ai    aj    ak   gromos type
+   -C     N     H     ga_32   
+   -C     N    CA     ga_31   
+    H     N    CA     ga_18   
+    N    CA    CB     ga_13   
+    N    CA     C     ga_13   
+   CB    CA     C     ga_13   
+   CA    CB    CG     ga_15   
+   CB    CG   CD1     ga_27   
+   CB    CG   CD2     ga_27   
+  CD1    CG   CD2     ga_27   
+   CG   CD1   HD1     ga_25   
+   CG   CD1   CE1     ga_27   
+  HD1   CD1   CE1     ga_25   
+   CG   CD2   HD2     ga_25   
+   CG   CD2   CE2     ga_27   
+  HD2   CD2   CE2     ga_25   
+  CD1   CE1   HE1     ga_25   
+  CD1   CE1    CZ     ga_27   
+  HE1   CE1    CZ     ga_25   
+  CD2   CE2   HE2     ga_25   
+  CD2   CE2    CZ     ga_27   
+  HE2   CE2    CZ     ga_25   
+  CE1    CZ   CE2     ga_27   
+  CE1    CZ    OH     ga_27   
+  CE2    CZ    OH     ga_27   
+   CA     C     O     ga_30   
+   CA     C    +N     ga_19   
+    O     C    +N     ga_33   
+ [ impropers ]
+;  ai    aj    ak    al   gromos type
+    N    -C    CA     H     gi_1    
+   CA     N     C    CB     gi_2    
+   CG   CD1   CD2    CB     gi_1    
+   CG   CD1   CE1    CZ     gi_1    
+   CG   CD2   CE2    CZ     gi_1    
+  CD1    CG   CD2   CE2     gi_1    
+  CD1    CG   CE1   HD1     gi_1    
+  CD1   CE1    CZ   CE2     gi_1    
+  CD2    CG   CD1   CE1     gi_1    
+  CD2    CG   CE2   HD2     gi_1    
+  CD2   CE2    CZ   CE1     gi_1    
+  HE1   CD1    CZ   CE1     gi_1    
+  HE2   CD2    CZ   CE2     gi_1    
+   CZ   CE1   CE2    OH     gi_1    
+    C    CA    +N     O     gi_1    
+ [ dihedrals ]
+;  ai    aj    ak    al   gromos type
+  -CA    -C     N    CA     gd_14   
+   -C     N    CA     C     gd_44   
+   -C     N    CA     C     gd_43
+    N    CA    CB    CG     gd_34   
+    N    CA     C    +N     gd_45   
+    N    CA     C    +N     gd_42   
+   CA    CB    CG   CD1     gd_40   
