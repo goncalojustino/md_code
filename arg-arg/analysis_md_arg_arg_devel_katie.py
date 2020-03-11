@@ -13,38 +13,37 @@ from MDAnalysis.analysis import contacts
 
 def plotter_alpha(distances, pos):
     import os
-    os.makedirs("distances_alpha", exist_ok=True)
+    os.makedirs("α_Plane_Angle", exist_ok=True)
     import matplotlib.pyplot as plt
     ax = plt.subplot()
     ax.plot(distances[:, 0], distances[:, 1], 'r--', lw=2, label=r"$R_G$")
     ax.set_xlabel("time (ps)")
-    ax.set_ylabel(r"Pair distance ($\AA$)")
-    #ax.set_ylim(0,16)
-    #ax.hlines(5,0,1000)
-    ax.set_title('Alpha Distances between ' + arginines[i].resname + str(arginines[i].resid) + " (" + arginines[i].resname + ")" \
-            + '-' + arginines[j].resname + str(arginines[j].resid) + " (" + arginines[j].resname + ")")
-    title = "distances_alpha/" + arginines[i].resname + str(arginines[i].resid) + " (" + arginines[i].resname + ")" \
-            + '-' + arginines[j].resname + str(arginines[j].resid) + " (" + arginines[j].resname + ")"
+    ax.set_ylabel(r"Angles (°)")
+    ax.set_ylim(0,180)
+    ax.set_title('α_Plane_Angle ' + arginines[i].resname + str(arginines[i].resid) + "_(" + arginines[i].resname + ")" \
+            + '-' + arginines[j].resname + str(arginines[j].resid) + "_(" + arginines[j].resname + ")")
+    title = "α_Plane_Angle/" + arginines[i].resname + str(arginines[i].resid) + "_(" + arginines[i].resname + ")" \
+            + '-' + arginines[j].resname + str(arginines[j].resid) + "_(" + arginines[j].resname + ")"
     ax.figure.savefig(title)
     plt.draw()  # draws graph in the file
     plt.cla()  # clears the axis for next use
 
 def plotter_theta(distances, pos):
     import os
-    os.makedirs("distances_theta", exist_ok=True)
+    os.makedirs("θ_Angular_Displacement", exist_ok=True)
     import matplotlib.pyplot as plt
     ax = plt.subplot()
     ax.plot(distances[:, 0], distances[:, 1], 'r--', lw=2, label=r"$R_G$")
     ax.set_xlabel("time (ps)")
-    ax.set_ylabel(r"Pair distance ($\AA$)")
-    # ax.set_ylim(0,16)
+    ax.set_ylabel(r"Angles (°)")
+    ax.set_ylim(0,180)
     # ax.hlines(5,0,1000)
-    ax.set_title('Theta Distances between ' + arginines[i].resname + str(arginines[i].resid) + " (" +
+    ax.set_title('θ_Angular_Displacement ' + arginines[i].resname + str(arginines[i].resid) + "_(" +
         arginines[i].resname + ")" \
-        + '-' + arginines[j].resname + str(arginines[j].resid) + " (" + arginines[j].resname + ")")
-    title = "distances_theta/" + arginines[i].resname + str(arginines[i].resid) + " (" + arginines[
+        + '-' + arginines[j].resname + str(arginines[j].resid) + "_(" + arginines[j].resname + ")")
+    title = "θ_Angular_Displacement/" + arginines[i].resname + str(arginines[i].resid) + "_(" + arginines[
         i].resname + ")" \
-            + '-' + arginines[j].resname + str(arginines[j].resid) + " (" + arginines[
+            + '-' + arginines[j].resname + str(arginines[j].resid) + "_(" + arginines[
                 j].resname + ")"
     ax.figure.savefig(title)
     plt.draw()  # draws graph in the file
@@ -52,18 +51,17 @@ def plotter_theta(distances, pos):
 
 def plotter_beta(distances, pos):
     import os
-    os.makedirs("distances_beta", exist_ok=True)
+    os.makedirs("β_Side_Chain_Angle", exist_ok=True)
     import matplotlib.pyplot as plt
     ax = plt.subplot()
     ax.plot(distances[:, 0], distances[:, 1], 'r--', lw=2, label=r"$R_G$")
     ax.set_xlabel("time (ps)")
-    ax.set_ylabel(r"Pair distance ($\AA$)")
-    #ax.set_ylim(0,16)
-    #ax.hlines(5,0,1000)
-    ax.set_title('Beta Distances between ' + arginines[i].resname + str(arginines[i].resid) + " (" + arginines[i].resname + ")" \
-            + '-' + arginines[j].resname + str(arginines[j].resid) + " (" + arginines[j].resname + ")")
-    title = "distances_beta/" + arginines[i].resname + str(arginines[i].resid) + " (" + arginines[i].resname + ")" \
-            + '-' + arginines[j].resname + str(arginines[j].resid) + " (" + arginines[j].resname + ")"
+    ax.set_ylabel(r"Angles (°)")
+    ax.set_ylim(0,180)
+    ax.set_title('β_Side_Chain_Angle ' + arginines[i].resname + str(arginines[i].resid) + "_(" + arginines[i].resname + ")" \
+            + '-' + arginines[j].resname + str(arginines[j].resid) + "_(" + arginines[j].resname + ")")
+    title = "β_Side_Chain_Angle/" + arginines[i].resname + str(arginines[i].resid) + "_(" + arginines[i].resname + ")" \
+            + '-' + arginines[j].resname + str(arginines[j].resid) + "_(" + arginines[j].resname + ")"
     ax.figure.savefig(title)
     plt.draw()  # draws graph in the file
     plt.cla()  # clears the axis for next use
@@ -76,13 +74,13 @@ def plotter_distancia(distances, pos):
     ax.plot(distances[:, 0], distances[:, 1], 'r--', lw=2, label=r"$R_G$")
     ax.set_xlabel("time (ps)")
     ax.set_ylabel(r"Pair distance ($\AA$)")
-    #ax.set_ylim(0,16)
-    #ax.hlines(5,0,1000)
-    ax.set_title('Distances between ' + arginines[i].resname + str(arginines[i].resid) + " (" +
+    ax.set_ylim(0,20)
+    ax.hlines(10,0,1000)
+    ax.set_title('Distances between ' + arginines[i].resname + str(arginines[i].resid) + "_(" +
         arginines[i].resname + ")" \
-        + '-' + arginines[j].resname + str(arginines[j].resid) + " (" + arginines[j].resname + ")")
-    title = "distances/" + arginines[i].resname + str(arginines[i].resid) + " (" + arginines[i].resname + ")" \
-            + '-' + arginines[j].resname + str(arginines[j].resid) + " (" + arginines[j].resname + ")"
+        + '-' + arginines[j].resname + str(arginines[j].resid) + "_(" + arginines[j].resname + ")")
+    title = "distances/" + arginines[i].resname + str(arginines[i].resid) + "_(" + arginines[i].resname + ")" \
+            + '-' + arginines[j].resname + str(arginines[j].resid) + "_(" + arginines[j].resname + ")"
     ax.figure.savefig(title)
     plt.draw()  # draws graph in the file
     plt.cla()  # clears the axis for next use
