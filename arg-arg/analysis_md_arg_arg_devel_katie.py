@@ -97,7 +97,7 @@ for i in range(len(arginines)):
     j = i + 1
     while j < len(arginines):
         distance = numpy.linalg.norm(arginines[i].atoms.CZ.position - arginines[j].atoms.CZ.position)
-        if distance < 10:
+        if distance < 15:
             #print(arginines[i].resid, arginines[j].resid, distance)
             distances = []
             alphas = []
