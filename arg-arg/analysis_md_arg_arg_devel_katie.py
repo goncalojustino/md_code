@@ -75,7 +75,7 @@ def plotter_distancia(distances, pos):
     ax.set_xlabel("time (ps)")
     ax.set_ylabel(r"Pair distance ($\AA$)")
     ax.set_ylim(0,20)
-    ax.hlines(10,0,1000)
+    ax.hlines(5,0,1000)
     ax.set_title('Distances between ' + arginines[i].resname + str(arginines[i].resid) + "_(" +
         arginines[i].resname + ")" \
         + '-' + arginines[j].resname + str(arginines[j].resid) + "_(" + arginines[j].resname + ")")
@@ -86,8 +86,8 @@ def plotter_distancia(distances, pos):
     plt.cla()  # clears the axis for next use
 
 
-u = MDAnalysis.Universe('../../MD simulation/md_0_1.gro',
-                        '../../MD simulation/md_0_1.xtc')
+u = MDAnalysis.Universe('../../MDsimulation/md_0_1.gro',
+                        '../../MDsimulation/md_0_1.xtc')
 
 arginines = u.select_atoms("resname ARG and name CZ").residues
 
