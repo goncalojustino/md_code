@@ -1,0 +1,23 @@
+;
+;	File 'topol.top' was generated
+;	By user: goncalo (1000)
+;	On host: leonard
+;	At date: Mon May 29 22:53:46 2017
+
+;
+;	This is a standalone topology file
+;
+;	Created by:
+;	                    :-) GROMACS - gmx pdb2gmx, 2016.1 (-:
+;	
+;	Executable:   /opt/gromacs-2016.1-mod/bin/gmx_mod
+;	Data prefix:  /opt/gromacs-2016.1-mod
+;	Working dir:  /home/goncalo/samba_shared/htf_md/propka_ph74
+;	Command line:
+;	  gmx_mod pdb2gmx -f 1a8e.pdb
+;	Force field was read from the standard GROMACS share directory.
+;
+
+; Include forcefield parameters
+#include "zgj_fcy5.ff/forcefield.itp"
+

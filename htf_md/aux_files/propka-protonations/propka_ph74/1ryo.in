@@ -1,0 +1,27 @@
+read
+    mol pqr 1ryo.pqr
+end
+elec 
+    mg-auto
+    dime 129 161 129
+    cglen 87.0162 109.2437 88.4884
+    fglen 71.1860 84.2610 72.0520
+    cgcent mol 1
+    fgcent mol 1
+    mol 1
+    lpbe
+    bcfl sdh
+    pdie 2.0000
+    sdie 78.5400
+    srfm smol
+    chgm spl2
+    sdens 10.00
+    srad 1.40
+    swin 0.30
+    temp 298.15
+    calcenergy total
+    calcforce no
+    write pot dx 1ryo.pqr
+end
+print elecEnergy 1 end
+quit

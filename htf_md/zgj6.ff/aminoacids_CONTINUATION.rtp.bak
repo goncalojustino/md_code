@@ -1,0 +1,548 @@
+[ AC1 ]            
+ [ atoms ]         	
+   H10   HC   0.117   1   
+    C1    C  -0.521   1   
+    H8   HC   0.117   1   
+    H9   HC   0.117   1   
+    C2    C   0.757   1   
+    O3    O  -0.713   1   
+    C4    C  -0.937   1   
+   H11   HC   0.189   1   
+    C5    C   0.757   2   
+    O7    O  -0.713   2   
+    C6    C  -0.521   2   
+   H12   HC   0.117   2   
+   H13   HC   0.117   2   
+   H14   HC   0.117   2   
+ [ bonds ]         	
+   H10    C1   gb_3      
+    C1    H8   gb_3      
+    C1    H9   gb_3      
+    C1    C2   gb_27      
+    C2    O3   gb_6      
+    C2    C4   gb_18      
+    C4   H11   gb_3      
+    C4    C5   gb_18      
+    C5    O7   gb_6      
+    C5    C6   gb_27      
+    C6   H12   gb_3      
+    C6   H13   gb_3      
+    C6   H14   gb_3      
+ [ angles ]         	
+    H10   C1    H8   ga_47     
+    H10   C1    H9   ga_47     
+    H10   C1    C2   ga_14   
+     H8   C1    H9   ga_47     
+     H8   C1    C2   ga_14   
+     H9   C1    C2   ga_14   
+     C1   C2    O3   ga_22   
+     C1   C2    C4   ga_27   
+     O3   C2    C4   ga_37   
+     C2   C4   H11   ga_25   
+     C2   C4    C5   ga_37   
+    H11   C4    C5   ga_25   
+     C4   C5    O7   ga_37   
+     C4   C5    C6   ga_27   
+     O7   C5    C6   ga_22   
+     C5   C6   H12   ga_14   
+     C5   C6   H13   ga_14   
+     C5   C6   H14   ga_14   
+    H12   C6   H13   ga_47     
+    H12   C6   H14   ga_47     
+    H13   C6   H14   ga_47     
+ [ dihedrals ]      		
+    H8   C1   C2    O3   gd_39
+    C1   C2   C4    C5   gd_10
+    C2   C4   C5    C6   gd_10
+    C4   C5   C6   H12   gd_39
+ [ impropers ]      		
+    C2   C1   O3    C4   gi_1
+    C4   C2   C5   H11   gi_1
+    C5   C4   C6    O7   gi_1
+            
+[ AC2 ]            
+[ atoms ]         	
+   H61   HC    0.146   1   
+    C6    C   -0.5     1   
+   H62   HC    0.146   1   
+   H63   HC    0.146   1   
+    C5    C    0.711   1   
+    O7    O   -0.542   1   
+    C2    C   -0.504   2   
+   H21   HC    0.145   2   
+   H22   HC    0.145   2   
+    C1    C    0.711   2   
+    O4    O   -0.542   2   
+    C3    C   -0.5     3   
+   H31   HC    0.146   3   
+   H32   HC    0.146   3   
+   H33   HC    0.146   3   
+[ bonds ]         	
+   H61    C6   gb_3      
+    C6   H62   gb_3      
+    C6   H63   gb_3      
+    C6    C5   gb_25      
+    C5    O7   gb_402      
+    C5    C2   gb_27      
+    C2   H21   gb_3      
+    C2   H22   gb_3      
+    C2    C1   gb_27      
+    C1    O4   gb_402      
+    C1    C3   gb_25      
+    C3   H31   gb_3      
+    C3   H32   gb_3      
+    C3   H33   gb_3      
+[ angles ]         	
+   H61   C6   H62   ga_46    
+   H61   C6   H63   ga_46    
+   H61   C6    C5   ga_14   
+   H62   C6   H63   ga_46    
+   H62   C6    C5   ga_14   
+   H63   C6    C5   ga_14   
+    C6   C5    O7   ga_30   
+    C6   C5    C2   ga_27   
+    O7   C5    C2   ga_30   
+    C5   C2   H21   ga_15   
+    C5   C2   H22   ga_15   
+    C5   C2    C1   ga_13   
+   H21   C2   H22   ga_51   
+   H21   C2    C1   ga_15   
+   H22   C2    C1   ga_15   
+    C2   C1    O4   ga_30   
+    C2   C1    C3   ga_27   
+    O4   C1    C3   ga_30   
+    C1   C3   H31   ga_14   
+    C1   C3   H32   ga_14   
+    C1   C3   H33   ga_14   
+   H31   C3   H32   ga_46    
+   H31   C3   H33   ga_46    
+   H32   C3   H33   ga_46    
+[ dihedrals ]      		
+   H62   C6   C5    C2   gd_39
+    O7   C5   C2    C1   gd_39
+    C5   C2   C1    C3   gd_40
+    O4   C1   C3   H31   gd_39
+[ impropers ]      		
+   C1   C3   O4   C2   gi_1
+   C5   C2   O7   C6   gi_1
+
+[ ODA ]            
+ [ atoms ]         	
+    O3   OM   -0.761   1   
+    C2    C    0.651   1   
+    O1   OM   -0.761   1   
+    C4    C    0.028   1   
+   H10   HC    0.014   1   
+   H11   HC    0.014   1   
+    O5   OE   -0.370   1   
+    C6    C    0.028   2   
+   H12   HC    0.014   2   
+   H13   HC    0.014   2   
+    C7    C    0.651   2   
+    O8   OM   -0.761   2   
+    O9   OM   -0.761   2   
+ [ bonds ]         	
+    O3    C2   gb_44      
+    C2    O1   gb_44      
+    C2    C4   gb_39      
+    C4   H10   gb_39      
+    C4   H11   gb_39      
+    C4    O5   gb_18      
+    O5    C6   gb_18      
+    C6   H12   gb_39      
+    C6   H13   gb_39      
+    C6    C7   gb_39      
+    C7    O8   gb_44      
+    C7    O9   gb_44      
+ [ angles ]         	
+    O3   C2    O1   ga_38   
+    O3   C2    C4   ga_22   
+    O1   C2    C4   ga_22   
+    C2   C4   H10   ga_302   
+    C2   C4   H11   ga_302   
+    C2   C4    O5   ga_13   
+   H10   C4   H11   ga_302   
+   H10   C4    O5   ga_302   
+   H11   C4    O5   ga_302   
+    C4   O5    C6   ga_12   
+    O5   C6   H12   ga_302   
+    O5   C6   H13   ga_302   
+    O5   C6    C7   ga_13   
+   H12   C6   H13   ga_302   
+   H12   C6    C7   ga_302   
+   H13   C6    C7   ga_302   
+    C6   C7    O8   ga_22   
+    C6   C7    O9   ga_22   
+    O8   C7    O9   ga_38   
+ [ dihedrals ]      		
+   O1   C2   C4   O5   gd_40
+   C2   C4   O5   C6   gd_23
+   C4   O5   C6   C7   gd_23
+   O5   C6   C7   O8   gd_40
+ [ impropers ]      		
+   C2   O1   O3   C4   gi_1
+   C7   C6   O8   O9   gi_1
+
+[ H1O ]            
+ [ atoms ]         	
+   H10 HS14   0.469   1	
+    O3   OA  -0.635   1   
+    C1    C   0.684   1   
+    O2    O  -0.566   1   
+    C4    C   0.135   2   
+   H11   HC   0.05   2   
+   H12   HC   0.05   2   
+    O5   OE  -0.448   2   
+    C6    C   0.054   2   
+   H13   HC   0.022   2   
+   H14   HC   0.022   2   
+    C7    C   0.733   3   
+    O8   OM  -0.785   3   
+    O9   OM  -0.785   3   
+ [ bonds ]         	
+   H10    O3   gb_44      
+   H10    O3   gb_402      
+    O3    C1   gb_45      
+    C1    O2   gb_409      
+    C1    C4   gb_26      
+    C4   H11   gb_4      
+    C4   H12   gb_4      
+    C4    O5   gb_17      
+    O5    C6   gb_18      
+    C6   H13   gb_4      
+    C6   H14   gb_4      
+    C6    C7   gb_302      
+    C7    O8   gb_6      
+    C7    O9   gb_6      
+ [ angles ]         	
+   H10   O3    C1   ga_12   
+    O3   C1    O2   ga_33   
+    O3   C1    C4   ga_15   
+    O2   C1    C4   ga_30   
+    C1   C4   H11   ga_49   
+    C1   C4   H12   ga_49   
+    C1   C4    O5   ga_13   
+   H11   C4   H12   ga_205	
+   H11   C4    O5   ga_16   
+   H12   C4    O5   ga_16   
+    C4   O5    C6   ga_12   
+    O5   C6   H13   ga_51   
+    O5   C6   H14   ga_51   
+    O5   C6    C7   ga_15   
+   H13   C6   H14   ga_46   
+   H13   C6    C7   ga_47   
+   H14   C6    C7   ga_47   
+    C6   C7    O8   ga_22   
+    C6   C7    O9   ga_22   
+    O8   C7    O9   ga_38   
+ [ dihedrals ]      		
+   H10   O3   C1   O2   gd_11
+    O2   C1   C4   O5   gd_39
+    C1   C4   O5   C6   gd_23
+    C4   O5   C6   C7   gd_23
+    O5   C6   C7   O8   gd_39
+ [ impropers ]      		
+   C1   O2   O3   C4   gi_1
+   C7   C6   O8   O9   gi_1
+
+[ CT2 ]            
+ [ atoms ]         	
+   H14 HS14    0.430   1	
+    O1   OA   -0.580   1   
+    C2    C    0.655   1   
+    O3    O   -0.586   1   
+    C4    C   -0.289   2   
+   H15   HC    0.125   2   
+   H16   HC    0.064   2   
+    C5    C    0.480   3   
+    O6   OA   -0.705   3   
+   H17 HS14    0.356   3	
+   C11    C    0.561   3   
+   O12   OM   -0.728   3   
+   O13   OM   -0.728   3   
+    C7    C   -0.321   3   
+   H18   HC    0.051   3   
+   H19   HC    0.034   3   
+    C8    C    0.755   4   
+    O9   OM   -0.787   4   
+   O10   OM   -0.787   4   
+ [ bonds ]         	
+   H14    O1   gb_412      
+    O1    C2   gb_13      
+    C2    O3   gb_413      
+    C2    C4   gb_25      
+    C4   H15   gb_3      
+    C4   H16   gb_3      
+    C4    C5   gb_302      
+    C5    O6   gb_18      
+    C5   C11   gb_414      
+    C5    C7   gb_404      
+    O6   H17   gb_1      
+   C11   O12   gb_6      
+   C11   O13   gb_6      
+    C7   H18   gb_3      
+    C7   H19   gb_3      
+    C7    C8   gb_302   
+    C8    O9   gb_44      
+    C8   O10   gb_44      
+ [ angles ]         	
+   H14    O1    C2   ga_12   
+    O1    C2    O3   ga_33   
+    O1    C2    C4   ga_19   
+    O3    C2    C4   ga_37   
+    C2    C4   H15   ga_302   
+    C2    C4   H16   ga_302   
+    C2    C4    C5   ga_15   
+   H15    C4   H16   ga_51   
+   H15    C4    C5   ga_302   
+   H16    C4    C5   ga_305   
+    C4    C5    O6   ga_13   
+    C4    C5   C11   ga_15   
+    C4    C5    C7   ga_15   
+    O6    C5   C11   ga_13   
+    O6    C5    C7   ga_13   
+   C11    C5    C7   ga_13   
+    C5    O6   H17   ga_4   
+    C5   C11   O12   ga_19   
+    C5   C11   O13   ga_19   
+   O12   C11   O13   ga_38   
+    C5    C7   H18   ga_49   
+    C5    C7   H19   ga_43   
+    C5    C7    C8   ga_27   
+   H18    C7   H19   ga_205
+   H18    C7    C8   ga_302   
+   H19    C7    C8   ga_302   
+    C7    C8    O9   ga_22   
+    C7    C8   O10   ga_22   
+    O9    C8   O10   ga_38   
+ [ dihedrals ]      		
+   H14   O1    C2    O3   gd_11
+    O1   C2    C4    C5   gd_40
+    C2   C4    C5    O6   gd_34
+    C4   C5    O6   H17   gd_205
+    C4   C5   C11   O12   gd_39
+    C4   C5    C7    C8   gd_34
+    C5   C7    C8    O9   gd_39
+ [ impropers ]      		
+    C2   O1    O3    C4   gi_1
+    C8   C7    O9   O10   gi_1
+   C11   C5   O12   O13   gi_1
+
+[ CT3 ]            
+ [ atoms ]         	
+    O3   OM   -0.789   1   
+    C2    C    0.731   1   
+    O1   OM   -0.789   1   
+    C4    C   -0.295   1   
+   H14   HC    0.029   1   
+   H15   HC    0.029   1   
+    C5    C    0.558   2   
+    O6   OA   -0.795   2   
+   H16 HS14    0.405   2	
+   C11    C    0.586   3   
+   O12   OM   -0.793   3   
+   O13   OM   -0.793   3   
+    C7    C   -0.295   4   
+   H17   HC    0.029   4   
+   H18   HC    0.029   4   
+    C8    C    0.731   4   
+    O9   OM   -0.789   4   
+   O10   OM   -0.789   4   
+ [ bonds ]         	
+    O3    C2   gb_6      
+    C2    O1   gb_6      
+    C2    C4   gb_404      
+    C4   H14   gb_6      
+    C4   H15   gb_6      
+    C4    C5   gb_404      
+    C5    O6   gb_18      
+    C5   C11   gb_414      
+    C5    C7   gb_404      
+    O6   H16   gb_6      
+   C11   O12   gb_6      
+   C11   O13   gb_6      
+    C7   H17   gb_6      
+    C7   H18   gb_6      
+    C7    C8   gb_404      
+    C8    O9   gb_6      
+    C8   O10   gb_6      
+ [ angles ]         	
+    O3    C2    O1   ga_38   
+    O3    C2    C4   ga_22   
+    O1    C2    C4   ga_22   
+    C2    C4   H14   ga_7   
+    C2    C4   H15   ga_7   
+    C2    C4    C5   ga_27   
+   H14    C4   H15   ga_7   
+   H14    C4    C5   ga_43   
+   H15    C4    C5   ga_43   
+    C4    C5    O6   ga_13   
+    C4    C5   C11   ga_13   
+    C4    C5    C7   ga_15   
+    O6    C5   C11   ga_15   
+    O6    C5    C7   ga_13   
+   C11    C5    C7   ga_13   
+    C5    O6   H16   ga_4   
+    C5   C11   O12   ga_19   
+    C5   C11   O13   ga_19   
+   O12   C11   O13   ga_38   
+    C5    C7   H17   ga_43   
+    C5    C7   H18   ga_43   
+    C5    C7    C8   ga_27   
+   H17    C7   H18   ga_7   
+   H17    C7    C8   ga_7   
+   H18    C7    C8   ga_7   
+    C7    C8    O9   ga_22   
+    C7    C8   O10   ga_22   
+    O9    C8   O10   ga_38   
+ [ dihedrals ]      		
+   O1   C2    C4    C5   gd_22
+   C2   C4    C5    O6   gd_34
+   C4   C5    O6   H16   gd_23
+   C4   C5   C11   O12   gd_39
+   C4   C5    C7    C8   gd_34
+   C5   C7    C8    O9   gd_39
+ [ impropers ]      		
+    C2   O1    O3    C4   gi_1
+    C8   C7    O9   O10   gi_1
+   C11   C5   O12   O13   gi_1
+   
+[ LAC ]            
+ [ atoms ]         	
+   OXT   OM   -0.722   1   
+    C1    C    0.566   1   
+    O1   OM   -0.722   1   
+    C2    C    0.404   1   
+    H1 HS14   -0.060   1	
+    O2   OA   -0.721   1   
+    H5 HS14    0.356   1	
+    C3    C   -0.269   2   
+    H2   HC    0.056   2   
+    H3   HC    0.056   2   
+    H4   HC    0.056   2   
+ [ bonds ]         	
+   OXT   C1   gb_6      
+    C1   O1   gb_6      
+    C1   C2   gb_302      
+    C2   H1   gb_39      
+    C2   O2   gb_18      
+    C2   C3   gb_27      
+    O2   H5   gb_410      
+    C3   H2   gb_6      
+    C3   H3   gb_6      
+    C3   H4   gb_6      
+ [ angles ]         	
+   OXT   C1   O1   ga_38   
+   OXT   C1   C2   ga_19   
+    O1   C1   C2   ga_19   
+    C1   C2   H1   ga_19   
+    C1   C2   O2   ga_13   
+    C1   C2   C3   ga_15   
+    H1   C2   O2   ga_302   
+    H1   C2   C3   ga_302   
+    O2   C2   C3   ga_15   
+    C2   O2   H5   ga_4   
+    C2   C3   H2   ga_15   
+    C2   C3   H3   ga_15   
+    C2   C3   H4   ga_15   
+    H2   C3   H3   ga_47   
+    H2   C3   H4   ga_47   
+    H3   C3   H4   ga_47   
+ [ dihedrals ]      		
+   O1   C1   C2   C3   gd_22
+   C1   C2   O2   H5   gd_22
+   C1   C2   C3   H2   gd_34
+[ impropers ]      		
+   C1   C2   O1   OXT   gi_1
+
+[ OXL ]            
+ [ atoms ]         	
+   O4   OM   -0.778   1   
+   C2    C    0.556   1   
+   O2   OM   -0.778   1   
+   C1    C    0.556   1   
+   O1   OM   -0.778   1   
+   O3   OM   -0.778   1   
+ [ bonds ]         	
+   O4   C2   gb_44      
+   C2   O2   gb_44      
+   C2   C1   gb_404      
+   C1   O1   gb_44      
+   C1   O3   gb_44      
+ [ angles ]         	
+   O4   C2   O2   ga_38   
+   O4   C2   C1   ga_22   
+   O2   C2   C1   ga_22   
+   C2   C1   O1   ga_22   
+   C2   C1   O3   ga_22   
+   O1   C1   O3   ga_38   
+ [ dihedrals ]      		
+   O2   C2   C1   O1   gd_22
+ [ impropers ]      		
+ C1   C2   O1   O3   gi_1
+ C2   C1   O2   O4   gi_1
+
+[ HHO ]            
+ [ atoms ]      
+   HO1 HS14     0.444	    1	
+   OH1   OA    -0.59        1
+    C1    C     0.716       1	
+    O1    O    -0.558       1	
+   CD1    C    -0.108       2	
+   HD1   HC     0.126       2	
+  HD11   HC     0.126	    2	
+   OD1   OE    -0.312       2	
+   CD2    C    -0.108       2	
+   HD2   HC     0.126       2	
+  HD21   HC     0.126	    2	
+    C2    C     0.716	    3	
+    O2    O    -0.558	    3	
+   OH2   OA    -0.59	    3	
+   HO2 HS14     0.444	    3	
+ [ bonds ]         	
+   HO1   OH1   gb_410   	
+   OH1    C1   gb_11   	
+    C1    O1   gb_409      
+    C1   CD1   gb_26      
+   CD1   HD1   gb_3   	
+   CD1  HD11   gb_3		
+   CD1   OD1   gb_141   	
+   OD1   CD2   gb_141   	
+   CD2   HD2   gb_3   	
+   CD2  HD21   gb_3		
+   CD2    C2   gb_26   	
+    C2    O2   gb_409      
+    C2   OH2   gb_11      
+   OH2   HO2   gb_410   	
+ [ angles ]         	
+   HO1   OH1    C1   ga_12	
+   OH1    C1    O1   ga_33	
+   OH1    C1   CD1   ga_19	
+    O1    C1   CD1   ga_37   
+    C1   CD1   HD1   ga_302   
+    C1   CD1  HD11   ga_302	
+    C1   CD1   OD1   ga_13   
+   HD1   CD1  HD11   ga_7	
+   HD1   CD1   OD1   ga_52	
+  HD11   CD1   OD1   ga_52	
+   CD1   OD1   CD2   ga_12	
+   OD1   CD2   HD2   ga_52	
+   OD1   CD2  HD21   ga_52	
+   OD1   CD2    C2   ga_13	
+   HD2   CD2  HD21   ga_7	
+   HD2   CD2    C2   ga_302	
+  HD21   CD2    C2   ga_302	
+   CD2    C2    O2   ga_37	
+   CD2    C2   OH2   ga_19	
+    O2    C2   OH2   ga_33   
+    C2   OH2   HO2   ga_12   
+ [ dihedrals ]      		
+   HO1   OH1    C1    O1   gd_11
+   OH1    C1   CD1   OD1   gd_39
+    C1   CD1   OD1   CD2   gd_23
+   CD1   OD1   CD2    C2   gd_23
+   OD1   CD2    C2    O2   gd_39
+   CD2    C2   OH2   HO2   gd_12
+ [ impropers ]      		
+    C1   OH1   O1   CD1   gi_1
+    C2   CD2   O2   OH2   gi_1
