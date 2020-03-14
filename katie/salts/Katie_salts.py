@@ -1,3 +1,12 @@
+'''
+20200314
+ GCJ
+  plot beauty
+  basic extension to include HIS N atoms (as per VMD plugin that has HIS Ns as basic)
+DONE
+'''
+
+
 # ----IMPORTS----#
 import MDAnalysis as mda
 import numpy as np
@@ -12,11 +21,10 @@ def plotter(distances, pos):
     os.makedirs("distances", exist_ok=True)  # Creates folder if it doesn't exist already
     import matplotlib.pyplot as plt
     '''
-    
-    Plots the distances along the frames
+    Plots the distances along the trajectory
     
     :param distances: 
-        a list containing all the distances of a bond between all frames
+        a list containing all the distances of an atom pair between all frames
     :param pos: 
         the number of the position of the atoms of the AtomGroup
     :return: 
@@ -29,6 +37,7 @@ def plotter(distances, pos):
     ax.set_ylabel(r"Distance ($\AA$)",fontsize=16)
     ax.set_ylim(0,16)
     ax.hlines(5,0,1000)
+    ax.tick_params(axis='both', which='major', labelsize=12)
     title = "distances/" + acids[pos].resname + str(acids[pos].resid) + acids[pos].name \
             + '-' + basics[pos].resname + str(basics[pos].resid) + basics[pos].name 
     title2 = acids[pos].resname + str(acids[pos].resid) + " "+acids[pos].name \
@@ -42,7 +51,7 @@ def plotter(distances, pos):
 # ---- SNIOTCNUF----#
 
 if __name__ == '__main__':
-    MAX_DISTANCE = 4.0
+    MAX_DISTANCE = 5.0
 
     universe = mda.Universe('md.gro',
                             "md.xtc")  # creates the universe with the gro and xtc made in gromacs
@@ -53,7 +62,7 @@ if __name__ == '__main__':
 
     # selects all the basics
     basic = universe.select_atoms(
-        "(resname ARG and name NH*) or (resname LYS* and name NZ*)")
+        "(resname ARG and name NH*) or (resname LYS* and name NZ*) or (resname HIS and name ND1) or (resname HIS and name NE2)")
 
     # create a matrix with all distances between all positions
     distance = mda.analysis.distances.distance_array(acid.positions, basic.positions)
