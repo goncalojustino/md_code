@@ -24,13 +24,16 @@ def plotter(distances, pos):
         is below 4.0 A
     '''
     ax = plt.subplot()
-    ax.plot(distances[:, 0], distances[:, 1], 'r--', lw=2, label=r"$R_G$")
-    ax.set_xlabel("time (ps)")
-    ax.set_ylabel(r"Pair distance ($\AA$)")
+    ax.plot(distances[:, 0], distances[:, 1], '-b', lw=2, label=r"$R_G$")
+    ax.set_xlabel("time (ps)",fontsize=16)
+    ax.set_ylabel(r"Distance ($\AA$)",fontsize=16)
     ax.set_ylim(0,16)
     ax.hlines(5,0,1000)
-    title = "distances/" + acids[pos].resname + str(acids[pos].resid) + " (" + acids[pos].name + ")" \
-            + '-' + basics[pos].resname + str(basics[pos].resid) + " (" + basics[pos].name + ")"
+    title = "distances/" + acids[pos].resname + str(acids[pos].resid) + acids[pos].name \
+            + '-' + basics[pos].resname + str(basics[pos].resid) + basics[pos].name 
+    title2 = acids[pos].resname + str(acids[pos].resid) + " "+acids[pos].name \
+            + ' - ' + basics[pos].resname + str(basics[pos].resid) + " "+basics[pos].name
+    ax.set_title(title2,fontsize=18)
     ax.figure.savefig(title)
     plt.draw()  # draws graph in the file
     plt.cla()  # clears the axis for next use
