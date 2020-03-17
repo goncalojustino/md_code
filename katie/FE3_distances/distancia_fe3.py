@@ -34,14 +34,15 @@ def plotter_alpha(distances, pos, media):
 
 
 def create_universe(gro, xtc):
+    '''Irá criar o universo'''
     universe = mda.Universe(gro, xtc)
     return universe
 
 
 def tipo_universo(universe):
     '''irá criar o tipo de universo definindo o ferro e as outras ligações que nos interessão'''
-    global ferro, basic
-    tentativa_max_ddistances = 2.8
+    global ferro, basic, tentativa_max_distances
+    tentativa_max_distances = 2.8
 
     ferro = universe.select_atoms(
         "(resname FE3 and name FE) ")  # criação do universo com FE3
@@ -49,20 +50,20 @@ def tipo_universo(universe):
     basic = universe.select_atoms(
         "name * and (not name C* and not name H*)")  # criação do universo os restantes residuos
 
-    return tentativa_max_ddistances, ferro, basic
+    return tentativa_max_distances, ferro, basic
 
 
-def ligações(tentativa_max_ddistances, ferro, basic, universe):
+def ligações(tentativa_max_distances, ferro, basic, universe):
     resids = []
     resname = []
     name = []
     '''Irá criar um ficheiro que terá o ferro ligado a um outro atomo do universo com a 
     distancia desejada'''
-    with open('Ligações_com_FE3.txt', 'w+') as ficheiro:
+    with open('ligações_existentes_com_FE3.txt', 'w+') as ficheiro:
         for posicao in range(len(basic)):
             distance = np.linalg.norm(
                 ferro[0].position - basic[posicao].position)  # distancia de posições
-            if distance < tentativa_max_ddistances and distance != 0:  # Irá definoir dizerq eu a
+            if distance < tentativa_max_distances and distance != 0:  # Irá definoir dizerq eu a
                 # distancia entre os atmos terá de quer menor que a distancia que tem no espaço, se
                 # isso falhar, então será 'descartada' essa opção
                 lista = []
@@ -91,9 +92,17 @@ def ligações(tentativa_max_ddistances, ferro, basic, universe):
     return resids, resname, name
 
 
+def eliminar_ficheiros_existentes_1(resids, resnames, names):
+    if os.path.exists("linhas_usadas_ficheiro_gro.txt"):
+        os.remove("linhas_usadas_ficheiro_gro.txt")
+        linhas_usadas_de_ficheiro(resids, resnames, names)
+    else:
+        linhas_usadas_de_ficheiro(resids, resnames, names)
+
+
 def linhas_usadas_de_ficheiro(resids, resnames, names):
-    os.remove('Distanciasas1.txt')
     chaves = []
+    chaves.append('339FE3     FE')
     for loc in range(len(resids)):
         if len(names[loc]) == 2:
             chave = ' ' + str(resids[loc]) + str(resnames[loc]) + '     ' + str(names[loc])
@@ -104,15 +113,13 @@ def linhas_usadas_de_ficheiro(resids, resnames, names):
         if len(names[loc]) == 1:
             chave = ' ' + str(resids[loc]) + str(resnames[loc]) + '      ' + str(names[loc])
             chaves.append(chave)
-    chaves.append('339FE3     FE')
-
     with open('./md003/md3.gro') as f:
         linhas = f.readlines()
         for lines in linhas:
             for pos in range(len(chaves)):
                 if chaves[pos] in lines:
-                    with open('Distanciasas1.txt', 'a+') as file:
-                        file.write(lines + '\n')
+                    with open('linhas_usadas_ficheiro_gro.txt', 'a+') as file:
+                        file.write(lines)
                     file.close()
     f.close()
 
@@ -125,5 +132,6 @@ if __name__ == '__main__':
                                './md003/md3.xtc')
 
     VALOR, FERROS, BASICOS = tipo_universo(UNIVERSO)
+
     RESIDS, RESNAMES, NAMES = ligações(VALOR, FERROS, BASICOS, UNIVERSO)
-    linhas_usadas_de_ficheiro(RESIDS, RESNAMES, NAMES)
+    eliminar_ficheiros_existentes_1(RESIDS, RESNAMES, NAMES)
