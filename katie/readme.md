@@ -11,6 +11,16 @@
       - [2. Look for aromatic rings](#2-look-for-aromatic-rings)
       - [3. Check that centroid - point charge distance is within cutt-off](#3-check-that-centroid---point-charge-distance-is-within-cutt-off)
       - [4. Compute angular displacement](#4-compute-angular-displacement)
+    - [Aromatic - H-X interactions](#aromatic---h-x-interactions)
+      - [1. Use same aromatics](#1-use-same-aromatics)
+      - [2. Define set of HX groups anf HC groups](#2-define-set-of-hx-groups-anf-hc-groups)
+      - [3. Work out the distances and the angles](#3-work-out-the-distances-and-the-angles)
+  - [Katie's One Drive CysMet and CysHBond CYS-HBOND](#katies-one-drive-cysmet-and-cyshbond-cys-hbond)
+    - [Aromatic - Aromatic interactions](#aromatic---aromatic-interactions)
+- [Geometric snippets](#geometric-snippets)
+  - [Angle between planes](#angle-between-planes)
+  - [Distance between parallel planes](#distance-between-parallel-planes)
+  - [Distance of a point to a plane - projection of point to plane](#distance-of-a-point-to-a-plane---projection-of-point-to-plane)
 # Salt bdrige script
 - how are they defined for the script
 - measuring distances
@@ -30,7 +40,7 @@
       #note: L1,L2 gives the same angle as L2,L1  
       v1 = Li - M
       v2 = Lj - M
-      cosine = numpy.dot(v1, v2) / (numpy.linalg.norm(v1) - numpy.linalg.norm(v2))
+      cosine = numpy.dot(v1, v2) / (numpy.linalg.norm(v1) * numpy.linalg.norm(v2))
       angle = numpy.arccos(cosine)
       print(numpy.degrees(angle))
     
@@ -146,4 +156,169 @@ for each aromatic_residue
       angular displacement = angle between vector normal to aromatic residue and vector_aux using the dot product formula
 
       output = distance, angular displacement
+```
+
+### Aromatic - H-X interactions
+#### 1. Use same aromatics
+  * use normal vectors
+  * use centroids
+#### 2. Define set of HX groups anf HC groups
+```python
+get residues by the following resnames IF they have the mentioned H atoms (we will need the donor atom)
+
+HX(O/N) groups #these are polar H and explicitly present 
+  O donors
+    resname TYR and name HH # from OH - donor atom
+    resname THR and name HG1 # from OG1
+    resname SER and name HG # from OG
+    resname ASP and name HD2 # from OD2
+    resname GLU and name HE2 # from OE2
+  N donors
+    resname LYS and name HZ1 # from NZ
+    resname LYS and name HZ2 # from NZ
+    resname LYS and name HZ3 # from NZ
+    resname HIS and name HE2 # from NE2
+    resname HIS and name HD1 # from ND1
+    resname GLN and name HE21 # from NE2
+    resname GLN and name HE22 # from NE2
+    resname ASN and name HD21 # from ND2
+    resname ASN and name HD22 # from ND2 
+    resname ARG and name HH11 # from NH1
+    resname ARG and name HH1 # from NH1
+    resname ARG and name HH12 # from NH1
+    resname ARG and name HH21 # from NH2
+    resname ARG and name HH22 # from NH2
+HS groups:
+  S donors
+    resname CYS and namhe HG # from SG
+HCS groups:
+
+
+HC groups #these are apolar H, not present
+  C donors (from CH3 groups only)
+    resname MET # donor = CE; next =  SD
+    resname ALA # donor = CB; next = CA
+    resname LEU # donor = CG2; next = CB
+    resname LEU # donor = CD; next = CG1
+    resname THR # donor = CG2; next = CB
+    resname VAL # donor = CG1; next = CB
+    resname VAL # donor = CG2; next = CB
+
+
+```
+#### 3. Work out the distances and the angles
+```python
+for HO and HN groups:
+# Stojanovic2007; Plevin2010; 
+  distance: centroid to donor
+  if distance < 4.0:
+    vector_aux1 = centroid - H atom
+    vector_aux2 = donor - H atom
+    alpha = angle pi-H-X; between vector_aux1 and vector_aux2
+    if alpha > 120:
+      beta = angle between normal vector and centroid-donor vector
+      if beta < 50:
+        output
+
+for HC groups:
+# Stojanovic2007; Plevin2010; 
+  ditance = centroid to donor
+  if 3.0 < distance < 4.5:
+    beta = angle between normal vector and centroid-donor vector
+    if beta < 50:
+      gamma = angle between normal vector and donor-next vector
+      output
+```
+
+## Katie's One Drive CysMet and CysHBond CYS-HBOND
+for HS groups:
+  same as for H-O/N but 3.5 < distance < 4.9
+  #arene paper - also requires H to edge   
+for HCS groups:
+  check paper; requires also H to edge
+
+
+### Aromatic - Aromatic interactions
+
+The set of aromatic residues is computed, together with the normal vector to each plane and the centroid of each plane. 
+
+Classification of aromatic interaction can be performed from the geometrica if parameters computed for each i,j aromatic pair:
+- $d$ - centroid-centroid distance
+- $R_1$ - horizontal displacement
+- $R_2$ - vertical displacement
+-  $\alpha$ - dihedral angle (angle between planes = angular between normal vectors)
+-  $\theta$ - angular displacement (angle between $\overrightarrow{\text{CC'}}$ and normal to plane containing centroid C)
+
+Taxonomy:
+- $$d < 5.0 \wedge \alpha \in \left[\pi,\frac{\pi}{6}\right]\cup\left[\frac{5\pi}{6},\pi\right]$$
+  * parallel
+  * delusional classification: $V_\%$, $H_\%$ are vertical and horizontal character, which give what the largest contribution to centroid offset 
+ $$V_\%=\frac{\left|R_2\right|}{d};   H_\% = \frac{\left|R_1\right|}{d}$$
+
+- $$\alpha \in \left[\frac{\pi}{6},\frac{5\pi}{6}\right]$$
+  - $R_2<3.5$ - T-orientation, edge-to-face
+  - $R_2 \geq 3.5 \wedge R_1 < 3.0$ - T-orientation, face-to-edge
+  - $R_2 \geq 3.5 \wedge R_1 \geq 3.0$ - L-orientation
+
+
+
+
+
+# Geometric snippets
+## Angle between planes
+Given the normal vectors of two planes, v1=(a1,b1,c1) and v2=(a2,b2,c2), the angle between the planes is the angle between the vectors, and can be computed from the dot product:
+```python
+cosine = dot(v1,v2) / (norm(v1) * norm(v2))
+angle = arccos(cosine)
+```
+
+
+## Distance between parallel planes
+
+Given a plane alpha, defined by a normal vector (a,b,c) and with a centroid (x1,y1,z1): 
+
+- Calculate the distance to another plane that contains point (centroid) (x2,y2,z2) defined by vector (e,f,g) [paralell => are multiples] using:
+  
+$$D=\frac{|e \times x_1 + f \times y_1 + g \times z_1 + h|}{\sqrt(d^2+e^2+f^2) }$$
+
+```python
+#define general equation of plane TWO: Ex+Fy+GZ+H=0
+h = -e  * x2 - f * y2 - g * z2 
+
+#use this equation with point of plane ONE
+dist =  ABS(e*x1 + f*y1 + g*z1 + h) / SQRT (e^2 + f^2 + g^2)
+```
+
+## Distance of a point to a plane - projection of point to plane
+Given a point P(x0, y0, z0), find the (minium) distance to a plane defined by a centroid C1(x1,y1,z1) and normal vector (a,b,c). This ammounts to determine point P', the projection of P onto the plane. Line PP' goes through P, P' and is perpendicular to the plane => the vector normal to the plane is a directing vector of the line.
+
+The parametric equations of this line are:
+
+$$ \frac{x-x_0}{a} = \frac {y-y_0}{b}=\frac{z-z_0}{c}=t \Longleftrightarrow x = at+x_0 \wedge y=bt+y_0 \wedge z=ct+z_0$$
+
+Substituting this on the plane equation we get the value for t, which substituing back in the line equation gives the coordinates of point P' (the orthogonal projection of P on the plane).
+
+```python
+#define general equation of plane: ax+by+cz+d=0
+d = -a  * x1 - b * y1 - c * z1 
+
+#get the parametric equation of the line
+#replacing t for the value gives P'(x2,y2,z2)
+x2 = a*t + x0
+y2 = b*t + y0
+z2 = c*t + z0
+ 
+#compute t by substituing (x,y,z) on the plane equation
+#a(at+x0)+b(bt+y0)+c(ct+z0)+d=0
+t = (-d - a*x0 - b*y0 - c*z0)/(a^2 + b^2 + c^2)
+```
+The distance from P to P' is the "vertical displacement" of the centroids, and the distance from P to C is the "horizontal displacement" of the centroids.
+
+```python
+#compute distance of P to P' = distance of point to plane
+distance = ( (x2 - x0)^2 + (y2 - y0)^2 + (z2 - z0)^2 ) ^ (1/2)
+#OR
+pointP0 = [x0,y0,z0]
+pointP1 = [x2,y2,z2]
+distance = linalg.norm(pointP0 - pointP1)
 ```
