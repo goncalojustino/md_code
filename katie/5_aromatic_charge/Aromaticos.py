@@ -20,12 +20,13 @@ def angulo_normal_centroid(distance, nome_arom, name_carga, normal, vetor_centro
     :param normal: valor do vetor normal
     :param centroid: valor do vetor entre centroid e a carga
     '''
-    with open('angle_normal_centroid.txt', 'w+') as file:
+    with open('angle_normal_centroid.txt', 'a+') as file:
         angles = []
         angles.append(np.rad2deg(np.arccos((np.dot(normal, vetor_centroid)) /
                                            (la.norm(normal) * la.norm(vetor_centroid)))))
         frase ='Aromatic Aminoacid: ' + str(nome_arom) + ' - '+ 'Charged Aminoacid: ' + \
-               str(name_carga) + ' Distance:' + str(distance) + ' Angle:' + str(angles)[1:-1]+'\xc2\xb0'
+               str(name_carga) + ' Distance:' + str(distance) + ' Angle:' + str(angles)[1:-1]+\
+               '\xc2\xb0'+'\n'
         file.write(frase + '\n')
     file.close()
 
@@ -99,6 +100,7 @@ def eliminar_ficheiros_existentes(interactions):
     '''
     if os.path.exists("aromaticos.txt"):
         os.remove("aromaticos.txt")
+        os.remove("angle_normal_centroid.txt")
         coordinates_phe_tyr_tyo(interactions)
         coordinates_his_hsd_hse_hsp_hit(interactions)
         coordinates_trp(interactions)
