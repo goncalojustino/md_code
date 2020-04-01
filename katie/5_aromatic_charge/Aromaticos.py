@@ -7,12 +7,27 @@ from Look_for_point_charges import dicti, temp
 centroid_list = []  # esta lista sera criada aqui para poder ser utilizada no codigo inteiro
                     # sem a reeniciar
 
-def angulo_normal_centroid(distance, nome_arom, name_carga, normal, centroid):
-    angles = []
-    angles.append(np.rad2deg(np.arccos((np.dot(normal, centroid)) /
-                                       (la.norm(normal) * la.norm(centroid)))))
-    print('Aromatic Aminoacid:', nome_arom, ' - ', 'Charged Aminoacid:', name_carga, 'Distance:',
-          distance, ' Angle:', str(angles)[1:-1]+'°')
+def angulo_normal_centroid(distance, nome_arom, name_carga, normal, vetor_centroid):
+    '''
+    Esta funcao ira calcular os angulos feitos entre o vetor normal ao anel aromático e o vetor
+    feito a partir da distancia entre o centroid e ao ponto com carga correspondente,
+    Ira escrever tudo num ficheiro como seguinte formato:
+        Aromatic Aminoacid: <nome_arom> - Charged Aminoacid: <name_carga> Distance: <distance>
+        Angle: <angles>°
+    :param distance: distancia entre centroide e o aminoacido com carga
+    :param nome_arom: nome do aminoacido com anel aromatico
+    :param name_carga: nome do aminoacido com carga
+    :param normal: valor do vetor normal
+    :param centroid: valor do vetor entre centroid e a carga
+    '''
+    with open('angle_normal_centroid.txt', 'w+') as file:
+        angles = []
+        angles.append(np.rad2deg(np.arccos((np.dot(normal, vetor_centroid)) /
+                                           (la.norm(normal) * la.norm(vetor_centroid)))))
+        frase ='Aromatic Aminoacid: ' + str(nome_arom) + ' - '+ 'Charged Aminoacid: ' + \
+               str(name_carga) + ' Distance:' + str(distance) + ' Angle:' + str(angles)[1:-1]+'\xc2\xb0'
+        file.write(frase + '\n')
+    file.close()
 
 
 def cut_off(distance, nome_arom, name_carga, normalVector, subtraction):
