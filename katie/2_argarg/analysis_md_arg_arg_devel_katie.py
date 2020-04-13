@@ -85,7 +85,7 @@ def plotter_distancia(distances, pos):
     ax.set_ylabel(r"CZ-CZ distance ($\AA$)",fontsize=16)
     ax.set_ylim(0,20)
     ax.tick_params(axis='both', which='major', labelsize=12)
-    ax.hlines(5,0,1000)
+    ax.hlines(15,0,len(distances)+5)
     ax.set_title('Cζ distance ' + arginines[i].resname + str(arginines[i].resid) + \
         ' - ' + arginines[j].resname + str(arginines[j].resid),fontsize=18)
     title = "distances/" + arginines[i].resname + str(arginines[i].resid) + "_(" + arginines[i].resname + ")" \
