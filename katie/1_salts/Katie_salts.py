@@ -16,33 +16,36 @@ from MDAnalysis.analysis import contacts
 # ---STROPMI----#
 
 # ----FUNCTIONS----#
-def plotter(distances, pos):
+def plotter(distances, my_position):
     import os
-    os.makedirs("distances", exist_ok=True)  # Creates folder if it doesn't exist already
+    os.makedirs("distances_salt", exist_ok=True)  # Creates folder if it doesn't exist already
     import matplotlib.pyplot as plt
     '''
     Plots the distances along the trajectory
-    
     :param distances: 
         a list containing all the distances of an atom pair between all frames
-    :param pos: 
-        the number of the position of the atoms of the AtomGroup
+    :param my_position: 
+        the number of the my_positionition of the atoms of the AtomGroup
     :return: 
         a folder containing the graphs of all the bonds that in the end the distance of bond
         is below 4.0 A
     '''
     ax = plt.subplot()
     ax.plot(distances[:, 0], distances[:, 1], '-b', lw=2, label=r"$R_G$")
-    ax.set_xlabel("time (ps)",fontsize=16)
-    ax.set_ylabel(r"Distance ($\AA$)",fontsize=16)
-    ax.set_ylim(0,16)
-    ax.hlines(5,0,1000)
+    ax.set_xlabel("time (ps)", fontsize=16)
+    ax.set_ylabel(r"Distance ($\AA$)", fontsize=16)
+    ax.set_ylim(0, 16)
+    ax.hlines(5, 0, len(distances))
     ax.tick_params(axis='both', which='major', labelsize=12)
-    title = "distances/" + acids[pos].resname + str(acids[pos].resid) + acids[pos].name \
-            + '-' + basics[pos].resname + str(basics[pos].resid) + basics[pos].name 
-    title2 = acids[pos].resname + str(acids[pos].resid) + " "+acids[pos].name \
-            + ' - ' + basics[pos].resname + str(basics[pos].resid) + " "+basics[pos].name
-    ax.set_title(title2,fontsize=18)
+    title = "distances_salt/" + acids[my_position].resname + str(acids[my_position].resid) + acids[
+        my_position].name \
+            + '-' + basics[my_position].resname + str(basics[my_position].resid) + basics[
+                my_position].name
+    title2 = acids[my_position].resname + str(acids[my_position].resid) + "  " + acids[
+        my_position].name \
+             + ' - ' + basics[my_position].resname + str(basics[my_position].resid) + "  " + basics[
+                 my_position].name
+    ax.set_title(title2, fontsize=18)
     ax.figure.savefig(title)
     plt.draw()  # draws graph in the file
     plt.cla()  # clears the axis for next use
@@ -53,8 +56,8 @@ def plotter(distances, pos):
 if __name__ == '__main__':
     MAX_DISTANCE = 5.0
 
-    universe = mda.Universe('md.gro',
-                            "md.xtc")  # creates the universe with the gro and xtc made in gromacs
+    universe = mda.Universe("./md003/md3.gro",
+                            "./md003/md3.xtc")  # creates the universe with the gro and xtc made in gromacs
 
     # selects all the acids
     acid = universe.select_atoms(
@@ -67,23 +70,21 @@ if __name__ == '__main__':
     # create a matrix with all distances between all positions
     distance = mda.analysis.distances.distance_array(acid.positions, basic.positions)
 
-    lis = []
-    pos = [[], []]
+    my_position = [[], []]
 
     # filtrates the matrix to keep only those with max_distace or less
-    for i, lin in enumerate(distance):
-        for j, col in enumerate(lin):
-            if col < MAX_DISTANCE and col != 0.0:
-                pos[0].append(i)  # acids
-                pos[1].append(j)  # basics
+    for i, line in enumerate(distance):
+        for j, column in enumerate(line):
+            if column < MAX_DISTANCE and column != 0.0:
+                my_position[0].append(i)  # acids
+                my_position[1].append(j)  # basics
                 print(acid[i].resname, acid[i].resid, acid[i].name, '-', basic[j].resname,
-                      basic[j].resid, basic[j].name, 'd=', round(col, 2))
-                lis.append(round(col, 2))
+                      basic[j].resid, basic[j].name, 'distance=', round(column, 2))
 
     # picks up all the residues that had those distances
     # pos => (<pos of acid res>, <pos of basic res>) in the original AtomGroups
-    indexes_a = pos[0]
-    indexes_b = pos[1]
+    indexes_a = my_position[0]
+    indexes_b = my_position[1]
 
     acids = acid[indexes_a]
     basics = basic[indexes_b]
@@ -94,7 +95,7 @@ if __name__ == '__main__':
     # calculates the distance over time
     for i in range(len(acids)):
         distances = []
-        for ts in universe.trajectory:
+        for trajectory in universe.trajectory:
             distances.append((
                 universe.trajectory.time, np.linalg.norm(acids[i].position - basics[i].position)))
         distances = np.array(distances)
