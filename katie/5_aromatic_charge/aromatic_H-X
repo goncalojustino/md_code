@@ -1,0 +1,534 @@
+import numpy as np
+import MDAnalysis as mda
+from numpy import linalg as la
+from aromatic_rings import main, all_centroids, all_normavectors
+
+dictionary = {}
+
+def create_universe(gro, xtc):
+    '''
+    Will create the universe for gro and xtc files
+    :param gro: gro file
+    :param xtc: xtc file
+    :return: a universe with all the information that is on gro and xtc
+    '''
+    global universe
+    universe = mda.Universe(gro, xtc)
+    return universe
+
+
+def universe_type(universe):
+    '''
+    This function will create the type of universe defining the iron and the other connections
+    that interest us
+    :param universe: all the information that is on gro and xtc
+    :return: the information processed like,all the type of H-X on the universe
+    '''
+    ho = universe.select_atoms("(resname TYR) or (resname THR) "
+                               "or (resname SER) or (resname ASP) or (resname GLU)")
+    hn =universe.select_atoms("(resname LYS) or (resname HIS) or (resname GLN)"
+                              "or (resname ASN) or (resname ARG)")
+    hs = universe.select_atoms("(resname CYS and name HG)")
+    hc = universe.select_atoms("(resname MET) or (resname ALA) or (resname LEU)"
+                               "or (resname THR) or (resname VAL)") # dadores apenas de CH3
+    return ho, hn, hs, hc
+
+
+def distance_ho_hn(atom_position,h_position, atom):
+    '''
+    will calculate the alpha and beta angles only if the distance between the centroid and the
+    data is less than the cut-off (4.0)
+    :param atom_position: the position of the chosen amino acid
+    :param h_position: the position of the chosen hydrogen atom
+    :return: the alpha and beta angle
+    '''
+    for element in all_centroids:
+        distance = np.linalg.norm(element - atom_position)
+        if distance < 4.0:
+            vetor_aux1 = element - h_position
+            vetor_aux2 = atom_position - h_position
+            alpha = np.rad2deg(np.arccos((np.dot(vetor_aux1, vetor_aux2)) /
+                                           (la.norm(vetor_aux1) * la.norm(vetor_aux2))))
+            print(atom,' - alpha: ',alpha)
+            if alpha > 120:
+                for normal in all_normavectors:
+                    beta = np.rad2deg(np.arccos((np.dot(normal, distance)) /
+                                                               (la.norm(normal) * la.norm(distance))))
+                    if beta < 50:
+                        print(atom,' - beta: ',beta)
+
+
+def distance_hc(donor_position,next_position):
+    '''
+    will calculate the beta and gamma angles only if the distance between the centroid and the
+    doner is between 3,0 and 4,5
+    :param donor_position: the position of the donor atom
+    :param next_position: the position of the next atom
+    :return: the beta and gamma angle
+    '''
+    for element in all_centroids:
+        distance = np.linalg.norm(element - donor_position)
+        if distance < 4.5 and distance > 3.0:
+            for normal in all_normavectors:
+                beta = np.rad2deg(np.arccos((np.dot(normal, distance)) /
+                                            (la.norm(normal) * la.norm(distance))))
+                beta = (beta[0] + beta[1] + beta[2])/3
+                print('HC - beta: ',beta)
+                if beta < 50:
+                    donor_next_vector = np.linalg.norm(next_position - donor_position)
+                    gamma = np.rad2deg(np.arccos((np.dot(normal, donor_next_vector)) /
+                                                 (la.norm(normal) * la.norm(donor_next_vector))))
+                    gamma = (gamma[0] + gamma[1] + gamma[2])/3
+                    print('HC - gamma: ',gamma)
+
+
+def select_ho(ho):
+    '''
+    this function will check if there are two necessary atoms (the hydrogen atom and donor) for
+    the amino acid to pass to the next information processing phase
+    :param ho: information of HX groups with O donors
+    :return: a dictionary, using the name of the amino acid and the respective atom as the key
+    '''
+    temp0 = 0
+    temp1 = 0
+    temp2 = 0
+    lista = []
+    for atom in ho:
+        if "TYR" in str(atom):
+            if ": H of type H of resname TYR" in str(atom):
+                temp0 = atom.resid
+                position_temp = atom.position
+            if "OH" in str(atom):
+                temp1 = atom.resid
+            if "HH" in str(atom):
+                temp2 = atom.resid
+                if temp1 == temp2 and temp1 == temp0:
+                    lista.append(temp1)
+                    dictionary.update({'TYR - HH':lista})
+                    distance_ho_hn(atom.position, position_temp, 'HO')
+
+    lista = []
+    for atom in ho:
+        if "THR" in str(atom):
+            if ": H of type H of resname THR" in str(atom):
+                temp0 = atom.resid
+                position_temp = atom.position
+            if"OG1" in str(atom):
+                temp1 =atom.resid
+            if "HG1" in str(atom):
+                temp2 =atom.resid
+                if temp1 == temp2 and temp1 == temp0:
+                    lista.append(temp1)
+                    dictionary.update({'THR - HG1':lista})
+                    distance_ho_hn(atom.position, position_temp, 'HO')
+
+    lista = []
+    for atom in  ho:
+        if "SER" in str(atom):
+            if ": H of type H of resname SER" in str(atom):
+                temp0 = atom.resid
+                position_temp = atom.position
+            if"OG" in str(atom):
+                temp1 =atom.resid
+            if "HG" in str(atom):
+                temp2 =atom.resid
+                if temp1 == temp2 and temp1 == temp0:
+                    lista.append(temp1)
+                    dictionary.update({'SER - HG':lista})
+                    distance_ho_hn(atom.position, position_temp, 'HO')
+
+    lista = []
+    for atom in ho:
+        if "ASP" in str(atom):
+            if ": H of type H of resname ASP" in str(atom):
+                temp0 = atom.resid
+                position_temp = atom.position
+            if"OD2" in str(atom):
+                temp1 =atom.resid
+            if "HD2" in str(atom):
+                temp2 =atom.resid
+                if temp1 == temp2 and temp1 == temp0:
+                    lista.append(temp1)
+                    dictionary.update({'ASP - HD2':lista})
+                    distance_ho_hn(atom.position, position_temp, 'HO')
+
+
+    lista = []
+    for atom in ho:
+        if "GLU" in str(atom):
+            if ": H of type H of resname GLU" in str(atom):
+                temp0 = atom.resid
+                position_temp = atom.position
+            if"OE2" in str(atom):
+                temp1 =atom.resid
+            if "HE2" in str(atom):
+                temp2 =atom.resid
+                if temp1 == temp2 and temp1 == temp0:
+                    lista.append(temp1)
+                    dictionary.update({'GLU - HE2':lista})
+                    distance_ho_hn(atom.position, position_temp, 'HO')
+
+
+def select_hn(hn):
+    '''
+    this function will check if there are two necessary atoms (the hydrogen atom and donor) for
+    the amino acid to pass to the next information processing phase
+    :param hn: information of HX groups with N donors
+    :return: a dictionary, using the name of the amino acid and the respective atom as the key
+    '''
+    temp0 = 0
+    temp1 = 0
+    temp2 = 0
+    lista = []
+    for atom in hn:
+        if "LYS" in str(atom):
+            if ": H of type H of resname LYS" in str(atom):
+                temp0 = atom.resid
+                position_temp = atom.position
+            if "NZ" in str(atom):
+                temp1 = atom.resid
+            if "HZ1" in str(atom):
+                temp2 = atom.resid
+                if temp1 == temp2 and temp1 == temp0:
+                    lista.append(temp1)
+                    dictionary.update({'LYS - HZ1': lista})
+                    distance_ho_hn(atom.position, position_temp, 'HN')
+
+    lista = []
+    for atom in hn:
+        if "LYS" in str(atom):
+            if ": H of type H of resname LYS" in str(atom):
+                temp0 = atom.resid
+                position_temp = atom.position
+            if "NZ" in str(atom):
+                temp1 = atom.resid
+            if "HZ1" in str(atom):
+                temp2 = atom.resid
+                if temp1 == temp2 and temp1 == temp0:
+                    lista.append(temp1)
+                    dictionary.update({'LYS - HZ1': lista})
+                    distance_ho_hn(atom.position, position_temp, 'HN')
+
+
+    lista = []
+    for atom in hn:
+        if "LYS" in str(atom):
+            if ": H of type H of resname LYS" in str(atom):
+                temp0 = atom.resid
+                position_temp = atom.position
+            if "NZ" in str(atom):
+                temp1 = atom.resid
+            if "HZ3" in str(atom):
+                temp2 = atom.resid
+                if temp1 == temp2 and temp1 == temp0:
+                    lista.append(temp1)
+                    dictionary.update({'LYS - HZ3': lista})
+                    distance_ho_hn(atom.position, position_temp, 'HN')
+
+
+    lista = []
+    for atom in hn:
+        if "HIS" in str(atom):
+            if ": H of type H of resname HIS" in str(atom):
+                temp0 = atom.resid
+                position_temp = atom.position
+            if "NE2" in str(atom):
+                temp1 = atom.resid
+            if "HE2" in str(atom):
+                temp2 = atom.resid
+                if temp1 == temp2 and temp1 == temp0:
+                    lista.append(temp1)
+                    dictionary.update({'HIS - HE2': lista})
+                    distance_ho_hn(atom.position, position_temp, 'HN')
+
+
+    lista = []
+    for atom in hn:
+        if "HIS" in str(atom):
+            if ": H of type H of resname HIS" in str(atom):
+                temp0 = atom.resid
+                position_temp = atom.position
+            if "ND1" in str(atom):
+                temp1 = atom.resid
+            if "HD1" in str(atom):
+                temp2 = atom.resid
+                if temp1 == temp2 and temp1 == temp0:
+                    lista.append(temp1)
+                    dictionary.update({'HIS - HD1': lista})
+                    distance_ho_hn(atom.position, position_temp, 'HN')
+
+
+    lista = []
+    for atom in hn:
+        if "GLN" in str(atom):
+            if ": H of type H of resname GLN" in str(atom):
+                temp0 = atom.resid
+                position_temp = atom.position
+            if "NE2" in str(atom):
+                temp1 = atom.resid
+            if "HE21" in str(atom):
+                temp2 = atom.resid
+                if temp1 == temp2 and temp1 == temp0:
+                    lista.append(temp1)
+                    dictionary.update({'GLN - HE21': lista})
+                    distance_ho_hn(atom.position, position_temp, 'HN')
+
+
+    lista = []
+    for atom in hn:
+        if "GLN" in str(atom):
+            if ": H of type H of resname GLN" in str(atom):
+                temp0 = atom.resid
+                position_temp = atom.position
+            if "NE2" in str(atom):
+                temp1 = atom.resid
+            if "HE22" in str(atom):
+                temp2 = atom.resid
+                if temp1 == temp2 and temp1 == temp0:
+                    lista.append(temp1)
+                    dictionary.update({'GLN - HE22': lista})
+                    distance_ho_hn(atom.position, position_temp, 'HN')
+
+
+    lista = []
+    for atom in hn:
+        if "ASN" in str(atom):
+            if ": H of type H of resname ASN" in str(atom):
+                temp0 = atom.resid
+                position_temp = atom.position
+            if "ND2" in str(atom):
+                temp1 = atom.resid
+            if "HD21" in str(atom):
+                temp2 = atom.resid
+                if temp1 == temp2 and temp1 == temp0:
+                    lista.append(temp1)
+                    dictionary.update({'ASN - HD21': lista})
+                    distance_ho_hn(atom.position, position_temp, 'HN')
+
+
+    lista = []
+    for atom in hn:
+        if "ASN" in str(atom):
+            if ": H of type H of resname ASN" in str(atom):
+                temp0 = atom.resid
+                position_temp = atom.position
+            if "ND2" in str(atom):
+                temp1 = atom.resid
+            if "HD22" in str(atom):
+                temp2 = atom.resid
+                if temp1 == temp2 and temp1 == temp0:
+                    lista.append(temp1)
+                    dictionary.update({'ASN - HD22': lista})
+                    distance_ho_hn(atom.position, position_temp, 'HN')
+
+
+    lista = []
+    for atom in hn:
+        if "ARG" in str(atom):
+            if ": H of type H of resname ARG" in str(atom):
+                temp0 = atom.resid
+                position_temp = atom.position
+            if "NH1" in str(atom):
+                temp1 = atom.resid
+            if "HH11" in str(atom):
+                temp2 = atom.resid
+                if temp1 == temp2 and temp1 == temp0:
+                    lista.append(temp1)
+                    dictionary.update({'GLN - HH11': lista})
+                    distance_ho_hn(atom.position, position_temp, 'HN')
+
+
+    lista = []
+    for atom in hn:
+        if "ARG" in str(atom):
+            if ": H of type H of resname ARG" in str(atom):
+                temp0 = atom.resid
+                position_temp = atom.position
+            if "NH1" in str(atom):
+                temp1 = atom.resid
+            if "HH12" in str(atom):
+                temp2 = atom.resid
+                if temp1 == temp2 and temp1 == temp0:
+                    lista.append(temp1)
+                    dictionary.update({'GLN - HH12': lista})
+                    distance_ho_hn(atom.position, position_temp, 'HN')
+
+
+    lista = []
+    for atom in hn:
+        if "ARG" in str(atom):
+            if ": H of type H of resname ARG" in str(atom):
+                temp0 = atom.resid
+                position_temp = atom.position
+            if "NH2" in str(atom):
+                temp1 = atom.resid
+            if "HH21" in str(atom):
+                temp2 = atom.resid
+                if temp1 == temp2 and temp1 == temp0:
+                    lista.append(temp1)
+                    dictionary.update({'GLN - HH21': lista})
+                    distance_ho_hn(atom.position, position_temp, 'HN')
+
+
+    lista = []
+    for atom in hn:
+        if "ARG" in str(atom):
+            if ": H of type H of resname ARG" in str(atom):
+                temp0 = atom.resid
+                position_temp = atom.position
+            if "NH2" in str(atom):
+                temp1 = atom.resid
+            if "HH22" in str(atom):
+                temp2 = atom.resid
+                if temp1 == temp2 and temp1 == temp0:
+                    lista.append(temp1)
+                    dictionary.update({'GLN - HH22': lista})
+                    distance_ho_hn(atom.position, position_temp, 'HN')
+
+
+def select_hs(hs):
+    '''
+    this function will check if there are two necessary atoms (the hydrogen atom and donor) for
+    the amino acid to pass to the next information processing phase
+    :param hs: information of HX groups with S donors
+    :return: a dictionary, using the name of the amino acid and the respective atom as the key
+    '''
+    temp1 = 0
+    temp2 = 0
+    lista = []
+    for atom in hs:
+        if "CYS" in str(atom):
+            if ": H of type H of resname CYS" in str(atom):
+                temp0 = atom.resid
+                position_temp = atom.position
+            if "SG" in str(atom):
+                temp1 = atom.resid
+            if "HG" in str(atom):
+                temp2 = atom.resid
+
+                if temp1 == temp2:
+                    lista.append(temp1)
+                    dictionary.update({'CYS - HG': lista})
+
+
+def select_hc(hc):
+    '''
+    this function will check if there are two necessary atoms (donors and near him) for
+    the amino acid to pass to the next information processing phase
+    :param hc: information of HX groups with C donors from CH3 groups only
+    :return: a dictionary, using the name of the amino acid and the respective atom as the key
+    '''
+    temp1 = 0
+    temp2 = 0
+    lista = []
+    for atom in hc:
+        if "MET" in str(atom):
+            if "SD" in str(atom):
+                temp1 = atom.resid
+                posisnext_temp = atom.position
+            if "CE" in str(atom):
+                temp2 = atom.resid
+                posisdonor_temp = atom.position
+                if temp1 == temp2:
+                    lista.append(temp1)
+                    dictionary.update({'MET - CE': lista})
+                    distance_hc(posisdonor_temp, posisnext_temp)
+    lista = []
+    for atom in hc:
+        if "ALA" in str(atom):
+            if "CA" in str(atom):
+                temp1 = atom.resid
+                posisnext_temp = atom.position
+            if "CB" in str(atom):
+                temp2 = atom.resid
+                if temp1 == temp2:
+                    lista.append(temp1)
+                    dictionary.update({'ALA - CB': lista})
+                    distance_hc(posisdonor_temp, posisnext_temp)
+
+    lista = []
+    for atom in hc:
+        if "LEU" in str(atom):
+            if "CB" in str(atom):
+                temp1 = atom.resid
+                posisnext_temp = atom.position
+            if "CG2" in str(atom):
+                temp2 = atom.resid
+                posisdonor_temp = atom.position
+                if temp1 == temp2:
+                    lista.append(temp1)
+                    dictionary.update({'LEU - CG2': lista})
+                    distance_hc(posisdonor_temp, posisnext_temp)
+
+    lista = []
+    for atom in hc:
+        if "LEU" in str(atom):
+            if "CG1" in str(atom):
+                temp1 = atom.resid
+                posisnext_temp = atom.position
+            if "CD" in str(atom):
+                temp2 = atom.resid
+                posisdonor_temp = atom.position
+                if temp1 == temp2:
+                    lista.append(temp1)
+                    dictionary.update({'LEU - CD': lista})
+                    distance_hc(posisdonor_temp, posisnext_temp)
+    lista = []
+    for atom in hc:
+        if "THR" in str(atom):
+            if "CB" in str(atom):
+                temp1 = atom.resid
+                posisnext_temp = atom.position
+            if "CG2" in str(atom):
+                temp2 = atom.resid
+                posisdonor_temp = atom.position
+                if temp1 == temp2:
+                    lista.append(temp1)
+                    dictionary.update({'THR - CG2': lista})
+                    distance_hc(posisdonor_temp, posisnext_temp)
+
+    lista = []
+    for atom in hc:
+        if "VAL" in str(atom):
+            if "CB" in str(atom):
+                temp1 = atom.resid
+                posisnext_temp = atom.position
+            if "CG1" in str(atom):
+                temp2 = atom.resid
+                posisdonor_temp = atom.position
+                if temp1 == temp2:
+                    lista.append(temp1)
+                    dictionary.update({'VAL - CG1': lista})
+                    distance_hc(posisdonor_temp, posisnext_temp)
+
+    lista = []
+    for atom in hc:
+        if "VAL" in str(atom):
+            if "CB" in str(atom):
+                temp1 = atom.resid
+                posisnext_temp = atom.position
+            if "CG2" in str(atom):
+                temp2 = atom.resid
+                posisdonor_temp = atom.position
+                if temp1 == temp2:
+                    lista.append(temp1)
+                    dictionary.update({'VAL - CG2': lista})
+                    distance_hc(posisdonor_temp, posisnext_temp)
+
+
+
+if __name__ == '__main__':
+
+    main()
+
+
+    UNIVERSO = create_universe("./md003/md3.gro",
+                               "./md003/md3.xtc")
+
+    HO, HN, HS, HC = universe_type(UNIVERSO)
+
+
+    select_ho(HO)
+    select_hn(HN)
+    select_hs(HS)
+    select_hc(HC)
